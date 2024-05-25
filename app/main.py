@@ -20,4 +20,4 @@ def predict(item: Item):
 
 @app.post("/health/")
 def health():
-    return "Yes"
+    return {'answer': 'Yes'}
