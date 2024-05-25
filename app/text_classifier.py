@@ -10,7 +10,7 @@ class TextClassifier:
             self.answers = json.load(file)
 
     def predict(self, text):
-        if self.classifier(text, self.labels)["scores"][0] < 0.25:
+        if self.classifier(text, self.labels)["scores"][0] < 0.35:
             return self.answers["Not identified"]
         classified_label = self.classifier(text, self.labels)["labels"][0]
         return self.answers[classified_label]
