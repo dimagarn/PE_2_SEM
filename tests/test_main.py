@@ -22,3 +22,18 @@ def test_predict_answer():
     assert response.json() == json.load(open('data/data.json',
                                              'r',
                                              encoding='utf-8'))['Visa invitation']
+
+
+def test_wrong_question():
+    response = client.post("/predict/",
+                           json={"text": "Why do i love cats?"})
+    assert response.status_code == 200
+    assert response.json() == json.load(open('data/data.json',
+                                             'r',
+                                             encoding='utf-8'))['Not identified']
+
+
+def test_health():
+    response = client.post("/health/")
+    assert response.status_code == 200
+    assert response.json() == {'answer': 'Yes'}
