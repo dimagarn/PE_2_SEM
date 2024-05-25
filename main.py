@@ -3,14 +3,20 @@ from transformers import pipeline
 from pydantic import BaseModel
 import json
 
-
 class Item(BaseModel):
     text: str
 
+class TextClassifier:
+    def __init__(self, model_name, labels, answers_file):
+        self.classifier = pipeline("zero-shot-classification", model=model_name)
+        self.labels = labels
+        with open(answers_file, 'r') as file:
+            self.answers = json.load(file)
 
-app = FastAPI()
-classifier = pipeline("zero-shot-classification",
-                      model="facebook/bart-large-mnli")
+    def predict(self, text):
+        classified_label = self.classifier(text, self.labels)["labels"][0]
+        return self.answers[classified_label]
+
 labels = ["Visa invitation",
           "Visa extension",
           "Accommodation for international students",
@@ -23,18 +29,18 @@ labels = ["Visa invitation",
           "Lectures begin and finish",
           "Not identified"]
 
-with open('data.json', 'r') as file:
-    answers = json.load(file)
+text_classifier = TextClassifier(model_name="facebook/bart-large-mnli",
+                                 labels=labels,
+                                 answers_file='data.json')
 
+app = FastAPI()
 
 @app.get("/")
 async def root():
     return {'model': 'facebook/bart-large-mnli'}
 
-
 @app.post("/predict/")
 def predict(item: Item):
     """Text Classifier"""
-    classified = classifier(item.text,
-                            labels)["labels"][0]
-    return answers[classified]
+    prediction = text_classifier.predict(item.text)
+    return prediction
