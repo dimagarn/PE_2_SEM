@@ -3,8 +3,10 @@ from transformers import pipeline
 from pydantic import BaseModel
 import json
 
+
 class Item(BaseModel):
     text: str
+
 
 class TextClassifier:
     def __init__(self, model_name, labels, answers_file):
@@ -16,6 +18,7 @@ class TextClassifier:
     def predict(self, text):
         classified_label = self.classifier(text, self.labels)["labels"][0]
         return self.answers[classified_label]
+
 
 labels = ["Visa invitation",
           "Visa extension",
@@ -35,9 +38,11 @@ text_classifier = TextClassifier(model_name="facebook/bart-large-mnli",
 
 app = FastAPI()
 
+
 @app.get("/")
 async def root():
     return {'model': 'facebook/bart-large-mnli'}
+
 
 @app.post("/predict/")
 def predict(item: Item):
