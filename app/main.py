@@ -16,3 +16,8 @@ def predict(item: Item):
     """Text Classifier"""
     prediction = text_classifier.predict(item.text)
     return prediction
+
+
+@app.post("/health/")
+def health():
+    return "Yes"
