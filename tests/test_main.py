@@ -1,5 +1,5 @@
 from fastapi.testclient import TestClient
-from main import app
+from app.main import app
 import json
 
 
@@ -19,6 +19,6 @@ def test_predict_answer():
                                  "received it. What should I do in "
                                  "this situation?"})
     assert response.status_code == 200
-    assert response.json() == json.load(open('data.json',
+    assert response.json() == json.load(open('data/data.json',
                                              'r',
                                              encoding='utf-8'))['Visa invitation']

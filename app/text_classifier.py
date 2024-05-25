@@ -1,11 +1,5 @@
-from fastapi import FastAPI
 from transformers import pipeline
-from pydantic import BaseModel
 import json
-
-
-class Item(BaseModel):
-    text: str
 
 
 class TextClassifier:
@@ -25,8 +19,8 @@ labels = ["Visa invitation",
           "Accommodation for international students",
           "Amount of people in a dormitory room",
           "Dormitory room readiness",
-          "Dormitory the address",
-          "Check in", "Other accomoation options",
+          "Dormitory address",
+          "Check in", "Other accommodation options",
           "Russian higher education system",
           "Point-Grade System",
           "Lectures begin and finish",
@@ -34,18 +28,4 @@ labels = ["Visa invitation",
 
 text_classifier = TextClassifier(model_name="facebook/bart-large-mnli",
                                  labels=labels,
-                                 answers_file='data.json')
-
-app = FastAPI()
-
-
-@app.get("/")
-async def root():
-    return {'model': 'facebook/bart-large-mnli'}
-
-
-@app.post("/predict/")
-def predict(item: Item):
-    """Text Classifier"""
-    prediction = text_classifier.predict(item.text)
-    return prediction
+                                 answers_file='data/data.json')
