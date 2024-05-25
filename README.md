@@ -77,10 +77,11 @@ PE_2_SEM/
 uvicorn app.main:app
 ```  
 После запуска сервера можно посылать POST-запросы к модели по локальному адресу [http://127.0.0.1:8000/predict/](http://127.0.0.1:8000/predict/) с помощью командной строки (терминала), POSTMAN или через интерфейс документации FastAPI:
-![image](https://github.com/themrinch/PE_final_check/assets/136446022/be0e966a-9a76-42e3-9d38-87f7e93ae6e5)
-![image](https://github.com/themrinch/PE_final_check/assets/136446022/7c83e133-6faa-4bfa-81e4-432555a972d3)
-![image](https://github.com/themrinch/PE_final_check/assets/136446022/7f122453-5d35-4ef1-8f7e-003b4bd90fb0)
-![image](https://github.com/themrinch/PE_final_check/assets/136446022/123f4e6a-ca17-4db8-8100-a0bc62ba9497)
+![image](https://github.com/dimagarn/PE_2_SEM/assets/136446022/0cfbba3b-f115-428e-a726-e483f7ba3511)
+![image](https://github.com/dimagarn/PE_2_SEM/assets/136446022/aa74b24a-75b9-4ba4-a4f6-7915d076ef44)
+![image](https://github.com/dimagarn/PE_2_SEM/assets/136446022/58355c60-9c5d-482b-bf60-f89e2a11ece3)
+![image](https://github.com/dimagarn/PE_2_SEM/assets/136446022/b3034c24-ed46-4ea4-af28-d574e1aff731)
+![image](https://github.com/dimagarn/PE_2_SEM/assets/136446022/04e1112b-48ff-4efb-88cd-92471b6da0f8)
 ## Тестирование
 Реализованы тесты, проверяющие корректность работы API. Используются библиотеки:
 - pytest
