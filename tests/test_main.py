@@ -30,10 +30,10 @@ def test_wrong_question():
     assert response.status_code == 200
     assert response.json() == json.load(open('data/data.json',
                                              'r',
-                                             encoding='utf-8'))['"Not identified']
+                                             encoding='utf-8'))['Not identified']
 
 
 def test_health():
     response = client.post("/health/")
     assert response.status_code == 200
-    assert response == "Yes"
+    assert response.json() == {'answer': 'Yes'}
