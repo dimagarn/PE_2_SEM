@@ -28,4 +28,4 @@ labels = ["Visa invitation",
 
 text_classifier = TextClassifier(model_name="facebook/bart-large-mnli",
                                  labels=labels,
-                                 answers_file='../data/data.json')
+                                 answers_file='data/data.json')
