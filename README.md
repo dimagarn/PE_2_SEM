@@ -1,11 +1,25 @@
 [![flake8 Lint](https://github.com/dimagarn/PE_2_SEM/actions/workflows/flake8-lint.yml/badge.svg)](https://github.com/dimagarn/PE_2_SEM/actions/workflows/flake8-lint.yml)
 [![pytest](https://github.com/dimagarn/PE_2_SEM/actions/workflows/pytest-tests.yml/badge.svg)](https://github.com/dimagarn/PE_2_SEM/actions/workflows/pytest-tests.yml)
-# UrFU_SE_Final
-Итоговый проект по предмету "Программная инженерия" (весенний семестр, 2024г)
-## Участники команды
+[![Docker Image CI](https://github.com/dimagarn/PE_2_SEM/actions/workflows/docker-image.yml/badge.svg)](https://github.com/dimagarn/PE_2_SEM/actions/workflows/docker-image.yml)
+[![Docker Publish](https://github.com/dimagarn/PE_2_SEM/actions/workflows/docker-publish.yml/badge.svg)](https://github.com/dimagarn/PE_2_SEM/actions/workflows/docker-publish.yml)
+# UrFU_SE_Final & UrFU_MLOps_Final
+Итоговые проекты по предметам "Программная инженерия" и "Автоматизация машинного обучения" (весенний семестр, 2024г)
+## Участники команды (Программная инженерия)
 - Гарнышев Дмитрий Александрович, РИМ-130907;
 - Кривошлык Александр Валерьевич, РИМ-130906;
 - Репьева Марина Владимировна, РИМ-130906.
+## Участники команды (Автоматизация машинного обучения)
+- Гарнышев Дмитрий Александрович, РИМ-130907;
+- Репьева Марина Владимировна, РИМ-130906;
+- Юрин Михаил Евгеньевич, РИМ-130907.
+## Конвеер API приложения (итоговый проект по предмету "Автоматизация машинного обучения")
+В процессе выполнения итогового проекта по предмету "Автоматизация машинного обучения" были выполнены следующие виды работ:
+- добавлены тесты на проверку работы модели при классификации данных, оценка работы модели проводилась с помощью метрики accuracy от scikit-learn;
+- настроены версионирование данных с помощью dvc и синхронизация данных с удаленным хранилищем;
+- API приложение реализовано в виде образа docker, сборка которого проводится в конвеере jenkins;
+- настроена оркестрация приложения с помощью ci/cd (jenkins).
+
+Кроме того, в репозитории была настроена система Continuous Integration: при выполнении push и pull_request в ветку 'main' в репозиторий GitHub выполняется автоматическая сборка образа docker и его размещение в программных пакетах.
 ## Описание модели
 [Модель](https://huggingface.co/facebook/bart-large-mnli) для zero-shot классификации текста на английском языке. Данная модель основана на [BART (large-sized model)](https://huggingface.co/facebook/bart-large) от компании facebook, обученной на датасете [MultiNLI (MNLI)](https://huggingface.co/datasets/nyu-mll/multi_nli) 
 (подробнее ознакомиться с моделью можно по [ссылке](https://huggingface.co/facebook/bart-large-mnli)). В качестве входных данных принимается текст в виде строки; список меток (лейблов), на принадлежность к которым проверяется текст. В качестве выходных данных выводится словарь вида:  
@@ -61,6 +75,7 @@ PE_2_SEM/
 │   ├── __init__.py
 │   └── test_main.py
 │
+├── Dockerfile
 ├── requirements.txt
 └── README.md
 ```
