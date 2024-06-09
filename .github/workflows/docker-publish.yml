@@ -42,6 +42,19 @@ jobs:
         uses: sigstore/cosign-installer@59acb6260d9c0ba8f4a2f9d9b48431a222b68e20 #v3.5.0
         with:
           cosign-release: 'v2.2.4'
+      
+      - id: 'auth'
+        name: 'Authenticate to Google Cloud'
+        uses: 'google-github-actions/auth@v2'
+        with:
+          credentials_json: '${{ secrets.GOOGLE_CREDENTIALS }}'
+      
+      - uses: iterative/setup-dvc@v2
+      - name: 'Pull data with dvc'
+        env:
+          GDRIVE_CREDENTIALS_DATA: ${{ secrets.GOOGLE_CREDENTIALS }}
+        run: |
+          dvc pull
 
       # Set up BuildKit Docker container builder to be able to build
       # multi-platform images and export cache
@@ -66,7 +79,7 @@ jobs:
         uses: docker/metadata-action@96383f45573cb7f253c731d3b3ab81c87ef81934 # v5.0.0
         with:
           images: ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}
-
+  
       # Build and push Docker image with Buildx (don't push on PR)
       # https://github.com/docker/build-push-action
       - name: Build and push Docker image
