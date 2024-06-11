@@ -20,6 +20,8 @@
 - настроена оркестрация приложения с помощью ci/cd (jenkins).
 
 Кроме того, в репозитории была настроена система Continuous Integration: при выполнении push и pull_request в ветку 'main' в репозиторий GitHub выполняется автоматическая сборка образа docker и его размещение в программных пакетах.
+
+ Также полученный docker образ был размещен в хранилище артефактов dockerhub: https://hub.docker.com/repository/docker/themrinch/mlops-urfu-fastapi-app/tags
 ## Описание модели
 [Модель](https://huggingface.co/facebook/bart-large-mnli) для zero-shot классификации текста на английском языке. Данная модель основана на [BART (large-sized model)](https://huggingface.co/facebook/bart-large) от компании facebook, обученной на датасете [MultiNLI (MNLI)](https://huggingface.co/datasets/nyu-mll/multi_nli) 
 (подробнее ознакомиться с моделью можно по [ссылке](https://huggingface.co/facebook/bart-large-mnli)). В качестве входных данных принимается текст в виде строки; список меток (лейблов), на принадлежность к которым проверяется текст. В качестве выходных данных выводится словарь вида:  
